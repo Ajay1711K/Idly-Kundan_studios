@@ -6,9 +6,15 @@ import axios from 'axios';
  * - Automatically attaches JWT Bearer token to every request
  * - Auto-clears auth state and redirects to /login on 401
  */
+const getBaseUrl = () => {
+    let url = import.meta.env.VITE_API_URL || '';
+    if (url.endsWith('/')) url = url.slice(0, -1);
+    if (url && !url.endsWith('/api')) url += '/api';
+    return url || '/api';
+};
+
 const axiosInstance = axios.create({
-    // If VITE_API_URL exists (in Render), use it. Otherwise, fallback to '/api' for local development.
-    baseURL: import.meta.env.VITE_API_URL || '/api',
+    baseURL: getBaseUrl(),
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
