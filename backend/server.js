@@ -20,8 +20,8 @@ app.use(
             process.env.NODE_ENV === 'production'
                 ? process.env.CLIENT_URL || 'http://localhost:5173'
                 : 'http://localhost:5173',
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-secret'],
         credentials: true,
     })
 );
