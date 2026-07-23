@@ -131,7 +131,7 @@ export const ManagementProvider = ({ children }) => {
     const updateEvent = async (id, data) => { try { await adminApi.updateEvent(id, data); await refreshFromBackend(); alert('Event updated successfully!'); } catch (err) { alert('Error updating event'); } };
     const deleteEvent = async (id) => { try { await adminApi.deleteEvent(id); await refreshFromBackend(); alert('Event deleted successfully!'); } catch (err) { alert('Error deleting event'); } };
 
-    const addGalleryPhoto = async (photo) => { try { await adminApi.createPerformance(photo); await refreshFromBackend(); alert('Photo added successfully!'); } catch (err) { alert('Error adding photo'); } };
+    const addGalleryPhoto = async (photo) => { try { await adminApi.createPerformance({ ...photo, date: new Date().toISOString().split('T')[0] }); await refreshFromBackend(); alert('Photo added successfully!'); } catch (err) { alert('Error adding photo'); } };
     const deleteGalleryPhoto = async (id) => { try { await adminApi.deletePerformance(id); await refreshFromBackend(); alert('Photo deleted successfully!'); } catch (err) { alert('Error deleting photo'); } };
 
     const markAttendance = async (date, studentId, className, status) => { try { await adminApi.createAttendance({ date, studentId, className, status }); await refreshFromBackend(); } catch (err) { alert('Error marking attendance'); } };

@@ -293,7 +293,7 @@ const deleteCertificate = async (req, res) => {
 const addStudent = async (req, res) => {
     try {
         const { name, email, mobile, batchId } = req.body;
-        const username = (name.split(' ')[0] || 'student').toLowerCase() + Math.floor(Math.random()*10000);
+        const username = (name.split(' ')[0] || 'student').replace(/[^a-zA-Z0-9_]/g, '').toLowerCase() + Math.floor(Math.random()*10000);
         const User = require('../Models/User');
         const newUser = await User.create({
             fullName: name,
